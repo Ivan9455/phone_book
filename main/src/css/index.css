@@ -1,0 +1,40 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.content {
+    margin: 0px auto;
+    width: 300px;
+    position: relative;
+    top: 150px;
+}
+
+.registration_form input, .login_form input, .registration_form label, .login_form label {
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.switch_form {
+    width: 300px;
+}
+
+.switch_form div {
+    cursor: pointer;
+}
+.form_switch {
+    display: block;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.status{
+    background: aqua;
+}
+.hidden{
+    display: none;
+}

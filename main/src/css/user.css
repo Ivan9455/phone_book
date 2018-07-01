@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.width {
+    width: 800px;
+}
+
+.content {
+    margin: 0px auto;
+}
+
+.user_data {
+    height: 100px;
+    background: aqua;
+}
+
+.add_contact {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+    background: #122132;
+    float: left;
+    border-radius: 50px;
+}
+
+.add_contact:hover {
+    opacity: 1;
+}
+
+.add_contact:before, .add_contact:after {
+    position: absolute;
+    top: 24px;
+    left: 48px;
+    content: ' ';
+    height: 50px;
+    width: 4px;
+    background: yellow;
+}
+
+.add_contact:before {
+    transform: rotate(0deg);
+}
+
+.add_contact:after {
+    transform: rotate(90deg);
+}
+
+.add_contact:active {
+    opacity: 0.8;
+}
+
+.user_email {
+    width: 200px;
+    height: 50px;
+    padding: 25px 50px;
+    text-align: center;
+    font-size: 20px;
+    float: left;
+    line-height: 50px;
+}
+
+.user_exit {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    float: right;
+    margin: 25px 50px;
+    cursor: pointer;
+    background: cadetblue;
+    border-radius: 25px;
+}
+
+.user_exit:hover {
+    opacity: 0.8;
+}
+
+.user_exit:active {
+    opacity: 0.7;
+}
+
+/*-------------------------*/
+.user_and_phone {
+    box-sizing: border-box;
+    height: 500px;
+    width: 250px;
+    float: left;
+    border: 2px solid black;
+}
+
+.user_info {
+    width: 550px;
+    float: left;
+}
+.user_info input{
+    width: calc(100% - 4px);
+}
+.text_info ,.user_add table{
+    width: 350px;;
+}
+.user_add table tr:nth-child(5){
+ text-align: center;
+}
+.user_add table{
+    box-sizing: border-box;
+}
+textarea{
+    resize: none;
+    height: 120px;
+    overflow: auto;
+}
+.add_user {
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    background: aquamarine;
+    cursor: pointer;
+}
+
+.add_user:active {
+    opacity: 0.8;
+    background:#2FFFD4;
+}
+
+.add_user:hover {
+    opacity: 0.9;
+}
+
+.phone {
+    height: 50px;
+    background: yellow;
+    box-sizing: border-box;
+    border: 2px solid black;
+    text-align: center;
+    margin: 2px;
+    border-radius: 50px;
+}
+.phone_name {
+    height: 100%;
+    width: 130px;
+    float: left;
+}
+.phone a , .phone a img{
+    height: 100%;
+    float: left;
+}
+.dot{
+    height: 90%;
+    margin: 2px;
+    float:left;
+    cursor: pointer;
+}
