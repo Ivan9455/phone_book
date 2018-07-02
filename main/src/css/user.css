@@ -150,6 +150,8 @@ textarea {
     height: 100%;
     width: 130px;
     float: left;
+    overflow-x: hidden;
+
 }
 
 .phone a, .phone a img {
@@ -170,4 +172,5 @@ textarea {
 .vk_img{
     border-radius: 25px;
     left: 0px !important;
+    padding-right: 10px;
 }

@@ -68,7 +68,7 @@ var contact = function () {
             phone += "<div class='phone' >";
             if(contact_json[i]['phone']==""){
                 phone +=
-                    "<a href='" + contact_json[i]['vk'] + "'>" +
+                    "<a href='" + contact_json[i]['vk'] + "' target='_blank'>" +
                     "<img class='vk_img' src='main/src/img/vk.png'></a>" +
                     "<div class='phone_name'>" + contact_json[i]['vk'];
             }
