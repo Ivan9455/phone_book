@@ -1,7 +1,7 @@
 var contact_json;
 window.onload = function () {
     contact();
-    document.getElementById("add_contact").onclick = function(){
+    document.getElementById("add_contact").onclick = function () {
         document.getElementById("user_info").innerHTML = "" +
             "            <div class=\"user_add\" id=\"user_add\">\n" +
             "                <table>\n" +
@@ -66,13 +66,13 @@ var contact = function () {
         for (let i = 0; i < contact_json.length; i++) {
             //console.log(res[i]['phone']);
             phone += "<div class='phone' >";
-            if(contact_json[i]['phone']==""){
+            if (contact_json[i]['phone'] == "") {
                 phone +=
                     "<a href='" + contact_json[i]['vk'] + "' target='_blank'>" +
                     "<img class='vk_img' src='main/src/img/vk.png'></a>" +
                     "<div class='phone_name'>" + contact_json[i]['vk'];
             }
-            else{
+            else {
                 phone +=
                     "<a href='tel:" + contact_json[i]['phone'] + "'>" +
                     "<img src='main/src/img/telefon.png'></a>" +
@@ -89,9 +89,49 @@ var contact = function () {
 };
 var get_contact = function (id) {
     console.log(get_json_contact(id));
-    //document.getElementById("info_user").innerHTML = ;
-    alert(JSON.stringify(get_json_contact(id)));
-
+    document.getElementById("user_info").innerHTML = "" +
+        "            <div class=\"user_add\" >\n" +
+        "                <table>\n" +
+        "                    <tr>\n" +
+        "                        <td>Номер телефона:</td>\n" +
+        "                        <td>\n" +
+        "                            <input type=\"text\" id=\"phone\" value='" + get_json_contact(id)['phone'] + "'>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td>Имя:</td>\n" +
+        "                        <td>\n" +
+        "                            <input type=\"text\" id=\"name\" value='" + get_json_contact(id)['name'] + "'>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td>Место:</td>\n" +
+        "                        <td>\n" +
+        "                            <input type=\"text\" id=\"gps\" value='" + get_json_contact(id)['phone'] + "'>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td>Вк:</td>\n" +
+        "                        <td>\n" +
+        "                            <input type=\"text\" id=\"vk\" value='" + get_json_contact(id)['vk'] + "'>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td colspan=\"2\">Что знаю:</td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td colspan=\"2\">\n" +
+        "                            <textarea class=\"text_info\" id=\"info\">" + get_json_contact(id)['info'] + "</textarea>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td colspan=\"2\">\n" +
+        "                            <div class=\"add_user\" onclick='contact_refresh_info(get_json_contact(id))' >Сохранить изменения</div>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                </table>\n" +
+        "            </div>";
+    //alert(JSON.stringify(get_json_contact(id)));
 };
 var get_json_contact = function (id) {
     for (let i = 0; i < contact_json.length; i++) {
@@ -101,17 +141,39 @@ var get_json_contact = function (id) {
     }
 };
 var add_user = function () {
-    var phone = document.getElementById("phone").value;
-    var name = document.getElementById("name").value;
-    var gps = document.getElementById("gps").value;
-    var vk = document.getElementById("vk").value;
-    var info = document.getElementById("info").value;
-    console.log(phone, name, gps, vk, info);
+
     $.ajax({
         type: "POST",
         url: "main/src/ajax/add_contact.php",
-        data: {phone: phone, name: name, gps: gps, vk: vk, info: info},
+        data: {
+            phone: get_pole_contact()['phone'],
+            name: get_pole_contact()['name'],
+            gps:  get_pole_contact()['gps'],
+            vk:  get_pole_contact()['vk'],
+            info:  get_pole_contact()['info']},
     }).done(function (result) {
-        console.log(result);
+
     });
+    setTimeout(contact(), 2000);
+};
+var contact_refresh_info = function (contact_info) {
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/contact_refresh_info.php",
+        data: {
+            old_info_contact: contact_info,
+            new_info_contact: get_pole_contact()},
+    }).done(function (result) {
+
+    });
+    contact();
+};
+var get_pole_contact = function () {
+    var contact = [];
+    contact['phone'] = document.getElementById("phone").value;
+    contact['name'] = document.getElementById("name").value;
+    contact['gps'] = document.getElementById("gps").value;
+    contact['vk'] = document.getElementById("vk").value;
+    contact['info'] = document.getElementById("info").value;
+    return contact;
 };
