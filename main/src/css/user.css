@@ -92,26 +92,33 @@
 }
 
 .user_info {
-    width: 550px;
+    width: 350px;
     float: left;
 }
-.user_info input{
+
+.user_info input {
     width: calc(100% - 4px);
 }
-.text_info ,.user_add table{
-    width: 350px;;
-}
-.user_add table tr:nth-child(5){
- text-align: center;
-}
-.user_add table{
+
+.text_info, .user_add table {
+    width: 350px;
     box-sizing: border-box;
 }
-textarea{
+
+.user_add table tr:nth-child(5) {
+    text-align: center;
+}
+
+.user_add table {
+    box-sizing: border-box;
+}
+
+textarea {
     resize: none;
     height: 120px;
     overflow: auto;
 }
+
 .add_user {
     text-align: center;
     height: 20px;
@@ -122,7 +129,7 @@ textarea{
 
 .add_user:active {
     opacity: 0.8;
-    background:#2FFFD4;
+    background: #2FFFD4;
 }
 
 .add_user:hover {
@@ -138,18 +145,29 @@ textarea{
     margin: 2px;
     border-radius: 50px;
 }
+
 .phone_name {
     height: 100%;
     width: 130px;
     float: left;
 }
-.phone a , .phone a img{
+
+.phone a, .phone a img {
+    position: relative;
     height: 100%;
     float: left;
+    left: -1px;
 }
-.dot{
+
+.dot {
     height: 90%;
     margin: 2px;
-    float:left;
+    float: right;
     cursor: pointer;
+    position: relative;
+    right: 5px;
+}
+.vk_img{
+    border-radius: 25px;
+    left: 0px !important;
 }
