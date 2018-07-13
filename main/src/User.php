@@ -65,15 +65,15 @@ NULL,
         return json_encode($arr);
     }
 
-    public function  contact_refresh_info($contact_old_info,$contact_new_info){
+    public function  contact_refresh_info($contact_new_info){
         $sql = "
         UPDATE `contact` SET 
-        `phone` = '".$contact_old_info['phone']."', 
-        `name` = '".$contact_old_info['name']."', 
-        `gps` = '".$contact_old_info['gps']."', 
-        `vk` = '".$contact_old_info['vk']."', 
-        `info` = '".$contact_old_info['info']."' 
-        WHERE `contact`.`id` = '".$contact_old_info['id']."'
+        `phone` = '".$contact_new_info->phone."', 
+        `name` = '".$contact_new_info->name."', 
+        `gps` = '".$contact_new_info->gps."', 
+        `vk` = '".$contact_new_info->vk."', 
+        `info` = '".$contact_new_info->info."' 
+        WHERE `contact`.`id` = '".$contact_new_info->id."'
         ";
         mysqli_query($this->db->isDb(), $sql);
     }

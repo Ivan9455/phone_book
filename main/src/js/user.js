@@ -1,4 +1,5 @@
 var contact_json;
+var data_user = {};
 window.onload = function () {
     contact();
     document.getElementById("add_contact").onclick = function () {
@@ -88,7 +89,7 @@ var contact = function () {
     });
 };
 var get_contact = function (id) {
-    console.log(get_json_contact(id));
+    data_user = get_json_contact(id);
     document.getElementById("user_info").innerHTML = "" +
         "            <div class=\"user_add\" >\n" +
         "                <table>\n" +
@@ -126,12 +127,11 @@ var get_contact = function (id) {
         "                    </tr>\n" +
         "                    <tr>\n" +
         "                        <td colspan=\"2\">\n" +
-        "                            <div class=\"add_user\" onclick='contact_refresh_info(get_json_contact(id))' >Сохранить изменения</div>\n" +
+        "                            <div class=\"add_user\" onclick='contact_refresh_info(data_user.id)' >Сохранить изменения</div>\n" +
         "                        </td>\n" +
         "                    </tr>\n" +
         "                </table>\n" +
         "            </div>";
-    //alert(JSON.stringify(get_json_contact(id)));
 };
 var get_json_contact = function (id) {
     for (let i = 0; i < contact_json.length; i++) {
@@ -141,39 +141,49 @@ var get_json_contact = function (id) {
     }
 };
 var add_user = function () {
-
     $.ajax({
         type: "POST",
         url: "main/src/ajax/add_contact.php",
         data: {
-            phone: get_pole_contact()['phone'],
-            name: get_pole_contact()['name'],
-            gps:  get_pole_contact()['gps'],
-            vk:  get_pole_contact()['vk'],
-            info:  get_pole_contact()['info']},
+            phone: document.getElementById("phone"),
+            name: document.getElementById("name"),
+            gps: document.getElementById("gps"),
+            vk: document.getElementById("vk"),
+            info: document.getElementById("info")
+        },
     }).done(function (result) {
 
     });
     setTimeout(contact(), 2000);
 };
-var contact_refresh_info = function (contact_info) {
+var contact_refresh_info = function (id) {
+    // let data = {};
+    // data.phone = document.getElementById("phone").value;
+    // data.pname = document.getElementById("name").value;
+    // data.gps = document.getElementById("gps").value;
+    // data.vk = document.getElementById("vk").value;
+    // data.info = document.getElementById("info").value;
+    let data = get_pole_contact();
+    //console.log(contact_info);
+    data.id = id;
+    console.log(data);
     $.ajax({
         type: "POST",
         url: "main/src/ajax/contact_refresh_info.php",
         data: {
-            old_info_contact: contact_info,
-            new_info_contact: get_pole_contact()},
+            json: JSON.stringify(data)
+        },
     }).done(function (result) {
-
+        console.log(result);
     });
-    contact();
+    setTimeout(contact(),2000)
 };
 var get_pole_contact = function () {
-    var contact = [];
-    contact['phone'] = document.getElementById("phone").value;
-    contact['name'] = document.getElementById("name").value;
-    contact['gps'] = document.getElementById("gps").value;
-    contact['vk'] = document.getElementById("vk").value;
-    contact['info'] = document.getElementById("info").value;
-    return contact;
+    let data = {};
+    data.phone = document.getElementById("phone").value;
+    data.name = document.getElementById("name").value;
+    data.gps = document.getElementById("gps").value;
+    data.vk = document.getElementById("vk").value;
+    data.info = document.getElementById("info").value;
+    return data;
 };
