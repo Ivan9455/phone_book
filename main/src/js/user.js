@@ -42,8 +42,8 @@ window.onload = function () {
             "                        <td colspan=\"2\">\n" +
             "                            <div class=\"add_user\" onclick='add_user()' >Добавить</div>\n" +
             "                        </td>\n" +
-            "                    </tr>\n" +
-            "                </table>\n" +
+            "                   </tr>" +
+            "                </table>" +
             "            </div>";
     };
     document.getElementById("user_exit").onclick = function () {
@@ -131,6 +131,10 @@ var get_contact = function (id) {
         "                        </td>\n" +
         "                    </tr>\n" +
         "                </table>\n" +
+        "<div>" +
+        "<textarea class='text_info h_comment' id='comment'></textarea>" +
+        "<input type='button' value='Добавтить коментарий' onclick='addComment(data_user.id)'> " +
+        "</div> " +
         "            </div>";
 };
 var get_json_contact = function (id) {
@@ -157,14 +161,7 @@ var add_user = function () {
     setTimeout(contact(), 2000);
 };
 var contact_refresh_info = function (id) {
-    // let data = {};
-    // data.phone = document.getElementById("phone").value;
-    // data.pname = document.getElementById("name").value;
-    // data.gps = document.getElementById("gps").value;
-    // data.vk = document.getElementById("vk").value;
-    // data.info = document.getElementById("info").value;
     let data = get_pole_contact();
-    //console.log(contact_info);
     data.id = id;
     console.log(data);
     $.ajax({
@@ -176,7 +173,7 @@ var contact_refresh_info = function (id) {
     }).done(function (result) {
         console.log(result);
     });
-    setTimeout(contact(),2000)
+    setTimeout(contact(), 2000)
 };
 var get_pole_contact = function () {
     let data = {};
@@ -187,3 +184,11 @@ var get_pole_contact = function () {
     data.info = document.getElementById("info").value;
     return data;
 };
+var addComment = function (id) {
+    let data = {};
+    data.id = id;
+    data.comment = document.getElementById("comment").value;
+    data.date = new Date().toLocaleString();
+    console.log(data);
+
+}

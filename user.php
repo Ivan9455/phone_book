@@ -29,6 +29,8 @@ session_start();
         </div>
         <div class="user_info" id="user_info">
 
+        </div>
+        <div class="user_info" id="user_comment">
 
         </div>
     </div>
