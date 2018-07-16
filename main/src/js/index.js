@@ -34,11 +34,35 @@ window.onload = function () {
         }).done(function (result) {
             console.log(result);
             check_session();
+
         });
 
     };
     document.getElementById("go_registration").onclick = function () {
-
+        let data = {};
+        data.email = document.getElementById("email_registration").value;
+        data.password = document.getElementById("password_registration").value;
+        let password2 = document.getElementById("password_registration2").value;
+        if (data.password !== password2) {
+            alert("Пароли не совпадают!");
+            return;
+        }
+        //добавить проверку
+        $.ajax({
+            type: "POST",
+            url: "main/src/ajax/check/Registration.php",
+            data: {
+                json: JSON.stringify(data)
+            }
+        }).done(function (result) {
+            if (result) {
+                alert("Пользователь успешно зарегистрирован!");
+            }
+            else {
+                alert("Пользователь с таким email уже зарегистрирован!")
+            }
+            console.log(result);
+        });
     };
 };
 

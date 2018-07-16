@@ -6,7 +6,6 @@ var data_user = {};
 window.onload = function () {
     document.getElementById("content").classList.add("hidden");
     check_session();
-    contact();
     document.getElementById("add_contact").onclick = function () {
         document.getElementById("user_info").innerHTML = "" +
             "            <div class=\"user_add\" id=\"user_add\">\n" +
@@ -64,10 +63,12 @@ window.onload = function () {
 var contact = function () {
     $.ajax({
         type: "POST",
+        data: {
+            id: id_user
+        },
         url: "main/src/ajax/contact_update.php",
     }).done(function (result) {
         contact_json = JSON.parse(result);
-        id_user = contact_json[0].id_user;
         var phone = "";
         for (let i = 0; i < contact_json.length; i++) {
             //console.log(res[i]['phone']);
@@ -101,13 +102,13 @@ var get_contact = function (id) {
         "                    <tr>\n" +
         "                        <td>Номер телефона:</td>\n" +
         "                        <td>\n" +
-        "                            <input type=\"text\" id=\"phone\" value='" + get_json_contact(id)['phone'] + "'>\n" +
+        "                            <input type=\"text\" id=\"phone\" value='" + get_json_contact(id)['phone'] + "'>" +
         "                        </td>\n" +
         "                    </tr>\n" +
         "                    <tr>\n" +
         "                        <td>Имя:</td>\n" +
         "                        <td>\n" +
-        "                            <input type=\"text\" id=\"name\" value='" + get_json_contact(id)['name'] + "'>\n" +
+        "                            <input type=\"text\" id=\"name\" value='" + get_json_contact(id)['name'] + "'>" +
         "                        </td>\n" +
         "                    </tr>\n" +
         "                    <tr>\n" +
@@ -207,7 +208,7 @@ var addComment = function (id) {
             json: JSON.stringify(data)
         },
     }).done(function (result) {
-        if(result){
+        if (result) {
             load_comment(id);
         }
     });
@@ -222,10 +223,10 @@ var load_comment = function (id) {
             id: id
         },
     }).done(function (result) {
-        contact_json = JSON.parse(result).reverse();
-        console.log(contact_json);
-        for (let i = 0; i < contact_json.length; i++) {
-            comment_html += comment(contact_json[i]);
+        commmnet_json = JSON.parse(result).reverse();
+        console.log(commmnet_json);
+        for (let i = 0; i < commmnet_json.length; i++) {
+            comment_html += comment(commmnet_json[i]);
         }
         document.getElementById('comments').innerHTML = comment_html;
     });
@@ -233,7 +234,7 @@ var load_comment = function (id) {
 var comment = function (json) {
     return "" +
         "<div class='comment'>" +
-        "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString()+ "</div>" +
+        "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString() + "</div>" +
         "<div class='comment_text'>" + json.comment + "</div>" +
         "</div>"
 }
@@ -248,8 +249,11 @@ const check_session = function () {
         if (!result) {
             location.href = "index.php";
         }
-        else{
+        else {
             document.getElementById("content").classList.remove("hidden");
+            id_user = result;
+            console.log(result)
+            contact();
         }
     });
 }

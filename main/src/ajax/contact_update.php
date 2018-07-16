@@ -1,4 +1,4 @@
 <?php
 require_once ("../User.php");
 $user = new User();
-print_r($user->contact_update());
+print_r($user->contact_update($_POST['id']));
