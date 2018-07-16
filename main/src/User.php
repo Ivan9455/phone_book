@@ -17,7 +17,7 @@ class User
 
     public function login($user)
     {
-        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user['email'] . "' AND `password`='" . $user['password'] . "';";
+        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . $user->password . "';";
         $result = mysqli_fetch_assoc(mysqli_query($this->db->isDb(), $sql));
         if ($result != null) {
             $session['id'] = $result['id'];
@@ -44,12 +44,12 @@ class User
         $sql = "INSERT INTO `contact` (`id`,`id_user`,`phone`,`name`,`gps`,`vk`,`info`) 
 VALUES (
 NULL,
-" . $contact['id_user'] . ",
-'" . $contact['phone'] . "',
-'" . $contact['name'] . "',
-'" . $contact['gps'] . "',
-'" . $contact['vk'] . "',
-'" . $contact['info'] . "'
+'" . $contact->id_user . "',
+'" . $contact->phone . "',
+'" . $contact->name . "',
+'" . $contact->gps . "',
+'" . $contact->vk . "',
+'" . $contact->info . "'
 );";
         mysqli_query($this->db->isDb(), $sql);
     }
@@ -76,5 +76,23 @@ NULL,
         WHERE `contact`.`id` = '".$contact_new_info->id."'
         ";
         mysqli_query($this->db->isDb(), $sql);
+    }
+    public function add_comment($comment){
+        $sql = "INSERT INTO `comment_contact` (`id_contact`,`comment`,`date`) 
+VALUES (
+'" . $comment->id . "',
+'" . $comment->comment . "',
+'" . $comment->date . "'     
+        )";
+        mysqli_query($this->db->isDb(), $sql);
+    }
+    public function load_comment($id){
+        $sql = "SELECT * FROM `comment_contact` WHERE `id_contact`='".$id."';";
+        $res = mysqli_query($this->db->isDb(), $sql);
+        $arr = [];
+        while ($result = mysqli_fetch_assoc($res)) {
+            array_push($arr,$result);
+        }
+        return json_encode($arr);
     }
 }

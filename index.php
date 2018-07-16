@@ -10,7 +10,6 @@ session_start();
     <link rel="stylesheet" href="main/src/css/index.css">
 </head>
 <body>
-
 <script type="text/javascript" src="main/src/js/index.js"></script>
 <div class="content">
     <div class="switch_form">

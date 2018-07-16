@@ -1,8 +1,5 @@
 <?php
 session_start();
-//print_r($_SESSION['id']);
-//print_r($_SESSION['email']);
-//print_r($_SESSION['password']);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -15,7 +12,7 @@ session_start();
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="main/src/js/user.js"></script>
-<div class="content width">
+<div class="content width" id="content">
     <div class="user_data width">
         <div class="add_contact" id="add_contact"></div>
         <div class="user_email">

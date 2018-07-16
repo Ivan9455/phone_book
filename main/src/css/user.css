@@ -98,9 +98,10 @@
 
 .user_info input {
     width: calc(100% - 4px);
+    margin: 2px;
 }
 
-.text_info, .user_add table {
+.text_info, .user_add table , .comment{
     width: 350px;
     box-sizing: border-box;
 }
@@ -176,4 +177,14 @@ textarea {
 }
 .h_comment{
     height: 70px;
+}
+.comment{
+    word-wrap: break-word;
+    padding: 10px;
+    background: #FEFFBE;
+    border: 5px solid #B9E6FF;
+    border-radius: 30px;
+}
+.hidden{
+    display: none;
 }

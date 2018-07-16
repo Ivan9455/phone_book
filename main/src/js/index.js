@@ -14,8 +14,9 @@ window.onload = function () {
         document.getElementById("login_form").classList.add("hidden");
     };
     document.getElementById("go_login").onclick = function () {
-        var email = document.getElementById("email_login").value;
-        var password = document.getElementById("password_login").value;
+        let data = {};
+        data.email = document.getElementById("email_login").value;
+        data.password = document.getElementById("password_login").value;
         /*
         if(!email.value){
             email.style.border = "2px solid red";
@@ -27,7 +28,9 @@ window.onload = function () {
         $.ajax({
             type: "POST",
             url: "main/src/ajax/check/Login.php",
-            data: {email: email, password: password}
+            data: {
+                json: JSON.stringify(data)
+            }
         }).done(function (result) {
             console.log(result);
             check_session();
@@ -38,7 +41,8 @@ window.onload = function () {
 
     };
 };
-var check_session = function () {
+
+const check_session = function () {
     $.ajax({
         type: "POST",
         url: "main/src/ajax/check/session.php",
