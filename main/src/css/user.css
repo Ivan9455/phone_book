@@ -5,6 +5,8 @@
 
 .width {
     width: 800px;
+    box-sizing: border-box;
+    margin: 0 0 10px 0px;
 }
 
 .content {
@@ -13,47 +15,23 @@
 
 .user_data {
     height: 100px;
+    border-radius: 50px;
     background: aqua;
 }
-
 .add_contact {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    opacity: 0.5;
-    background: #122132;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin: 25px;
+    background: #C9FF8C;
     float: left;
     border-radius: 50px;
-}
-
-.add_contact:hover {
-    opacity: 1;
-}
-
-.add_contact:before, .add_contact:after {
-    position: absolute;
-    top: 24px;
-    left: 48px;
-    content: ' ';
-    height: 50px;
-    width: 4px;
-    background: yellow;
-}
-
-.add_contact:before {
-    transform: rotate(0deg);
-}
-
-.add_contact:after {
-    transform: rotate(90deg);
-}
-
-.add_contact:active {
-    opacity: 0.8;
+    text-align: center;
+    cursor: pointer;
 }
 
 .user_email {
-    width: 200px;
+    width: 100px;
     height: 50px;
     padding: 25px 50px;
     text-align: center;
@@ -68,7 +46,7 @@
     text-align: center;
     line-height: 50px;
     float: right;
-    margin: 25px 50px;
+    margin: 25px 30px 0px 0px;
     cursor: pointer;
     background: cadetblue;
     border-radius: 25px;
@@ -85,24 +63,28 @@
 /*-------------------------*/
 .user_and_phone {
     box-sizing: border-box;
-    height: 500px;
     width: 250px;
     float: left;
-    border: 2px solid black;
+    border: 2px solid #B9FFF6;
+    border-radius: 30px;
+    background: #B9FFF6;
 }
 
-.user_info {
-    width: 350px;
+.user_add {
+    width: 300px;
+    padding: 15px;
     float: left;
+    background: #B9FFF6;
+    border-radius: 30px;
+    margin: 0 0 0 10px;
 }
 
 .user_info input {
-    width: calc(100% - 4px);
     margin: 2px;
 }
 
 .text_info, .user_add table , .comment{
-    width: 350px;
+    width: 300px;
     box-sizing: border-box;
 }
 
@@ -118,14 +100,18 @@ textarea {
     resize: none;
     height: 120px;
     overflow: auto;
+    width: 100%;
 }
 
 .add_user {
     text-align: center;
     height: 20px;
     line-height: 20px;
-    background: aquamarine;
+    background: #69FF96;
     cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px auto;
 }
 
 .add_user:active {
@@ -139,7 +125,7 @@ textarea {
 
 .phone {
     height: 50px;
-    background: yellow;
+    background: #C9FF8C;
     box-sizing: border-box;
     border: 2px solid black;
     text-align: center;
@@ -187,4 +173,27 @@ textarea {
 }
 .hidden{
     display: none;
+}
+
+.event {
+    width: 150px;
+    height: 30px;
+    float: left;
+    line-height: 30px;
+    padding: 10px;
+    margin: 25px;
+    text-align: center;
+    background: #C9FF8C;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.event a{
+    text-decoration: none;
+}
+.event:hover ,.add_contact:hover{
+    background: #F3FF96;
+}
+.event:active,.add_contact:active{
+    background: #CDFFDA;
+    opacity: 0.7;
 }

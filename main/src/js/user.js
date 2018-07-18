@@ -139,7 +139,7 @@ var get_contact = function (id) {
         "                </table>\n" +
         "<div>" +
         "<textarea class='text_info h_comment' id='comment'></textarea>" +
-        "<input type='button' value='Добавтить коментарий' onclick='addComment(data_user.id)'> " +
+        "<div class=\"add_user\" onclick=\"addComment(data_user.id)\">Добавтить коментарий</div> " +
         "<div id='comments'></div>" +
         "</div> " +
         "            </div>";

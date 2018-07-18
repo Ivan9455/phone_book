@@ -15,7 +15,14 @@ session_start();
 <script type="text/javascript" src="main/src/js/user.js"></script>
 <div class="content width" id="content">
     <div class="user_data width">
-        <div class="add_contact" id="add_contact"></div>
+        <div class="add_contact" id="add_contact">
+            Добавить контакт
+        </div>
+        <div class="event">
+            Добавить событие
+        </div>
+
+
         <div class="user_email">
             <?php echo $_SESSION['email']; ?>
         </div>
@@ -28,9 +35,9 @@ session_start();
         <div class="user_info" id="user_info">
 
         </div>
-        <div class="user_info" id="user_comment">
-
-        </div>
+<!--        <div class="user_info" id="user_comment">-->
+<!---->
+<!--        </div>-->
     </div>
 </div>
 </body>
