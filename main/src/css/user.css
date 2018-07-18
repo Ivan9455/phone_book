@@ -6,10 +6,10 @@
 .width {
     width: 800px;
     box-sizing: border-box;
-    margin: 0 0 10px 0px;
 }
 
 .content {
+    position: relative;
     margin: 0px auto;
 }
 
@@ -17,6 +17,10 @@
     height: 100px;
     border-radius: 50px;
     background: aqua;
+    position: fixed;
+    z-index: 1001;
+    border-bottom: 10px solid white;
+    box-sizing: content-box;
 }
 .add_contact {
     width: 150px;
@@ -62,21 +66,27 @@
 
 /*-------------------------*/
 .user_and_phone {
-    box-sizing: border-box;
+    position: fixed;
+    top: 110px;
     width: 250px;
     float: left;
     border: 2px solid #B9FFF6;
     border-radius: 30px;
     background: #B9FFF6;
+    overflow-y: scroll;
+    height: calc(100vh - 150px);
 }
 
 .user_add {
+    position: absolute;
+    left: 265px;
+    top: 110px;
     width: 300px;
     padding: 15px;
     float: left;
     background: #B9FFF6;
     border-radius: 30px;
-    margin: 0 0 0 10px;
+    z-index: 1000;
 }
 
 .user_info input {
@@ -197,3 +207,11 @@ textarea {
     background: #CDFFDA;
     opacity: 0.7;
 }
+
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: transparent; }
+::-webkit-scrollbar-track {  background-color: #999;}
+::-webkit-scrollbar-track-piece { background-color: #ffffff;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #666; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #999;}
+::-webkit-resizer { background-color: #666;}

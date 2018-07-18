@@ -39,7 +39,7 @@ window.onload = function () {
             "                    </tr>\n" +
             "                    <tr>\n" +
             "                        <td colspan=\"2\">\n" +
-            "                            <textarea class=\"text_info\" id=\"info\"></textarea>\n" +
+            "                            <textarea class=\"text_info\" id=\"info\" maxlength='1024'></textarea>\n" +
             "                        </td>\n" +
             "                    </tr>\n" +
             "                    <tr>\n" +
@@ -128,7 +128,7 @@ var get_contact = function (id) {
         "                    </tr>\n" +
         "                    <tr>\n" +
         "                        <td colspan=\"2\">\n" +
-        "                            <textarea class=\"text_info\" id=\"info\">" + get_json_contact(id)['info'] + "</textarea>\n" +
+        "                            <textarea class=\"text_info\" id=\"info\" maxlength='1024'>" + get_json_contact(id)['info'] + "</textarea>\n" +
         "                        </td>\n" +
         "                    </tr>\n" +
         "                    <tr>\n" +
@@ -138,7 +138,7 @@ var get_contact = function (id) {
         "                    </tr>\n" +
         "                </table>\n" +
         "<div>" +
-        "<textarea class='text_info h_comment' id='comment'></textarea>" +
+        "<textarea class='text_info h_comment' id='comment' maxlength='1024'></textarea>" +
         "<div class=\"add_user\" onclick=\"addComment(data_user.id)\">Добавтить коментарий</div> " +
         "<div id='comments'></div>" +
         "</div> " +
@@ -212,6 +212,7 @@ var addComment = function (id) {
             load_comment(id);
         }
     });
+    document.getElementById("comment").value ="";
 }
 var load_comment = function (id) {
     let commmnet_json = {};
