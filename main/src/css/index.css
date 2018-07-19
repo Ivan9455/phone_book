@@ -5,9 +5,11 @@
 
 .content {
     margin: 0px auto;
-    width: 300px;
+    padding: 30px;
+    width: 350px;
     position: relative;
     top: 150px;
+    background: #C9FF8C;
 }
 
 .registration_form input, .login_form input, .registration_form label, .login_form label {
@@ -33,7 +35,7 @@
     border-radius: 10px;
 }
 .status{
-    background: aqua;
+    background: #00FFFF;
 }
 .hidden{
     display: none;

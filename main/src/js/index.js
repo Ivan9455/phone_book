@@ -1,18 +1,22 @@
 window.onload = function () {
     check_session();
-    document.getElementById("status_login").onclick = function () {
-        document.getElementById("status_login").classList.add("status");
-        document.getElementById("status_registration").classList.remove("status");
-        document.getElementById("login_form").classList.remove("hidden");
-        document.getElementById("registration_form").classList.add("hidden");
-
-    };
-    document.getElementById("status_registration").onclick = function () {
-        document.getElementById("status_registration").classList.add("status");
-        document.getElementById("status_login").classList.remove("status");
-        document.getElementById("registration_form").classList.remove("hidden");
-        document.getElementById("login_form").classList.add("hidden");
-    };
+    document.getElementById("forgot").onclick = function(){
+        document.getElementById("nav").children.item(0).classList.remove("active");;
+        document.getElementById("nav").children.item(1).classList.remove("active");;
+    }
+    // document.getElementById("status_login").onclick = function () {
+    //     document.getElementById("status_login").classList.add("status");
+    //     document.getElementById("status_registration").classList.remove("status");
+    //     document.getElementById("login_form").classList.remove("hidden");
+    //     document.getElementById("registration_form").classList.add("hidden");
+    //
+    // };
+    // document.getElementById("status_registration").onclick = function () {
+    //     document.getElementById("status_registration").classList.add("status");
+    //     document.getElementById("status_login").classList.remove("status");
+    //     document.getElementById("registration_form").classList.remove("hidden");
+    //     document.getElementById("login_form").classList.add("hidden");
+    // };
     document.getElementById("go_login").onclick = function () {
         let data = {};
         data.email = document.getElementById("email_login").value;
@@ -42,11 +46,7 @@ window.onload = function () {
         let data = {};
         data.email = document.getElementById("email_registration").value;
         data.password = document.getElementById("password_registration").value;
-        let password2 = document.getElementById("password_registration2").value;
-        if (data.password !== password2) {
-            alert("Пароли не совпадают!");
-            return;
-        }
+
         //добавить проверку
         $.ajax({
             type: "POST",
@@ -78,3 +78,4 @@ const check_session = function () {
         }
     });
 }
+
