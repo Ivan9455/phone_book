@@ -16,12 +16,12 @@ class User
 
     public function login($user)
     {
-        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . $user->password . "';";
+        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . md5($user->password) . "';";
         $result = mysqli_fetch_assoc(mysqli_query($this->db->isDb(), $sql));
         if ($result != null) {
             $session['id'] = $result['id'];
             $session['email'] = $user->email;
-            $session['password'] = $user->password;
+            //$session['password'] = $user->password;
             return $session;
         } else {
             return 0;
@@ -37,7 +37,7 @@ class User
 VALUES (
 NULL,
 '" . $user->email . "',
-'" . $user->password . "');";
+'" . md5($user->password) . "');";
             mysqli_query($this->db->isDb(), $sql);
             return true;
         } else {
