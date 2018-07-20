@@ -23,16 +23,17 @@ window.onload = function () {
     };
     document.getElementById("go_login").onclick = function () {
         let data = {};
-        data.email = document.getElementById("email_login").value;
-        data.password = document.getElementById("password_login").value;
-        /*
-        if(!email.value){
+        let email = document.getElementById("email_login");
+        let password = document.getElementById("password_login");
+        data.email = email.value;
+        data.password = password.value;
+        if(email.value===""){
             email.style.border = "2px solid red";
         }
-        if(!password.value){
+        if(password.value===""){
             password.style.border = "2px solid red";
         }
-        */
+        console.log(data);
         $.ajax({
             type: "POST",
             url: "main/src/ajax/check/Login.php",
@@ -41,7 +42,9 @@ window.onload = function () {
             }
         }).done(function (result) {
             console.log(result);
-            //check_session();
+            if(result){
+                check_session();
+            }
 
         });
 

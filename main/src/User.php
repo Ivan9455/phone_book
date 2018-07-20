@@ -16,7 +16,7 @@ class User
 
     public function login($user)
     {
-        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . md5($user->password) . "';";
+        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . $user->password . "';";
         $result = mysqli_fetch_assoc(mysqli_query($this->db->isDb(), $sql));
         if ($result != null) {
             $session['id'] = $result['id'];
@@ -37,7 +37,7 @@ class User
 VALUES (
 NULL,
 '" . $user->email . "',
-'" . md5($user->password) . "');";
+'" . $user->password . "');";
             mysqli_query($this->db->isDb(), $sql);
             return true;
         } else {
