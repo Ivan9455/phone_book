@@ -41,7 +41,7 @@ window.onload = function () {
             }
         }).done(function (result) {
             console.log(result);
-            check_session();
+            //check_session();
 
         });
 
