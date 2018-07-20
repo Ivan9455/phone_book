@@ -1,42 +1,82 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    font-family:Book Antiqua;
+}
+
+body {
+    background: linear-gradient(#A59BFF, #C9FF8C);
+    height: 100vh;
 }
 
 .content {
-    margin: 0px auto;
+    margin: 0 auto;
     padding: 30px;
-    width: 350px;
-    position: relative;
-    top: 150px;
-    background: #C9FF8C;
-}
-
-.registration_form input, .login_form input, .registration_form label, .login_form label {
     width: 300px;
-    box-sizing: border-box;
-}
+    position: relative;
+    top: 15vh;
+    box-sizing: content-box;
+ }
 
 .switch_form {
     width: 300px;
+    height: 40px;
 }
 
-.switch_form div {
+
+.switch_form div, label ,input[type="button"]{
     cursor: pointer;
 }
+
 .form_switch {
     display: block;
     width: 150px;
-    height: 25px;
-    line-height: 25px;
+    height: 40px;
+    line-height: 40px;
     float: left;
     text-align: center;
     box-sizing: border-box;
-    border-radius: 10px;
+    background: #C8FFF6;
 }
-.status{
-    background: #00FFFF;
+
+.b1 {
+    border-radius: 10px 0 0 10px;
 }
-.hidden{
+.b2 {
+    border-radius: 0 10px 10px 0;
+}
+.hidden {
     display: none;
 }
+
+.status {
+    background: aqua;
+}
+table {
+    margin: 10px auto;
+}
+input , label {
+    padding: 3px;
+    width: 300px;
+    margin: 5px 0;
+}
+#go_login ,#go_registration,#go_forgot,#forgot{
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    background: #97B9D6;
+    padding: .5em 1.5em;
+    outline: none;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#go_login:hover ,
+#go_registration:hover ,
+#go_forgot:hover,
+#forgot:hover{ background: #65C3D6; } /* при наведении курсора мышки */
+#go_login:active ,
+#go_registration:active,
+#go_forgot:active,
+#forgot:active{ background:#37C3D6; } /* при нажатии */
