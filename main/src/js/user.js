@@ -77,13 +77,13 @@ var contact = function () {
                 phone +=
                     "<a href='" + contact_json[i]['vk'] + "' target='_blank'>" +
                     "<img class='vk_img' src='main/src/img/vk.png'></a>" +
-                    "<div class='phone_name'>" + contact_json[i]['vk'];
+                    "<div class='phone_name col-7 text-center'>" + contact_json[i]['vk'];
             }
             else {
                 phone +=
                     "<a href='tel:" + contact_json[i]['phone'] + "'>" +
                     "<img src='main/src/img/telefon.png'></a>" +
-                    "<div class='phone_name'>" + contact_json[i]['phone'];
+                    "<div class='phone_name col-7 text-center'>" + contact_json[i]['phone'];
             }
             phone +=
                 "<br>" + contact_json[i]['name'] + "</div>" +

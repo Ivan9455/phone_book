@@ -1,0 +1,4 @@
+@font-face {
+    font-family: beer_money; /* Гарнитура шрифта */
+    src: url(fonts/beer_money.ttf); /* Путь к файлу со шрифтом */
+}

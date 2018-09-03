@@ -8,36 +8,48 @@ session_start();
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="main/src/css/user.css">
 </head>
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="main/src/js/user.js"></script>
-<div class="content width" id="content">
-    <div class="user_data width">
-        <div class="add_contact" id="add_contact">
-            Добавить контакт
+<div class="container" id="content">
+    <div class="row margin-10-0">
+        <div class="col-lg-10 col-md-9 float-left">
+            <div class="col-lg-3 col-md-6 float-left text-center margin-5-0" >
+                <div class="user_data" id="add_contact">
+                    Добавить контакт
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 float-left text-center margin-5-0">
+                <div class="user_data">Добавить событие</div>
+            </div>
         </div>
-        <div class="event">
-            Добавить событие
+        <div class="col-lg-2 col-md-3 float-right text-center" >
+            <div class="col-12">
+                <div class="user_data margin-5-0" id="user_exit">Выход</div>
+            </div>
         </div>
-
-
-        <div class="user_email">
-            <?php echo $_SESSION['email']; ?>
+        <div class="col-lg-12 col-md-12 float-left text-center margin-5-0">
+            <div class="user_email">
+                <?php echo $_SESSION['email']; ?>
+            </div>
         </div>
-        <div class="user_exit" id="user_exit">Выход</div>
     </div>
-    <div class="width">
-        <div class="user_and_phone" id="user_and_phone">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 float-left">
+            <div class="user_and_phone" id="user_and_phone">
 
+            </div>
         </div>
-        <div class="user_info" id="user_info">
+        <div class="col-lg-8 col-md-6 float-left">
+            <div class="user_info" id="user_info">
 
+            </div>
         </div>
-<!--        <div class="user_info" id="user_comment">-->
-<!---->
-<!--        </div>-->
     </div>
 </div>
 </body>

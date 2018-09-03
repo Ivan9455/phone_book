@@ -75,6 +75,22 @@ window.onload = function () {
             console.log(result);
         });
     };
+    document.getElementById("go_forgot").onclick = function () {
+        let email = document.getElementById("email_forgot").value;
+        console.log(email);
+        $.ajax({
+            type: "POST",
+            url: "main/src/ajax/forgot_password.php",
+            data: {
+                email: email
+            }
+        }).done(function (result) {
+            console.log(result);
+            if(result){
+                alert("Новый пароль был отправлен вам на почту!")
+            }
+        });
+    }
 };
 
 const check_session = function () {
