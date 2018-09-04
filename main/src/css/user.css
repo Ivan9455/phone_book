@@ -7,7 +7,6 @@ body{
     overflow-x: hidden;
     min-width: 360px;
     background: linear-gradient(#A59BFF, #C9FF8C);
-    height: 100vh;
 }
 div {
     box-sizing: border-box;
@@ -21,7 +20,7 @@ div {
 .margin-5-0 {
     margin: 5px 0;
 }
-
+/*
 .width {
     width: 800px;
     box-sizing: border-box;
@@ -31,7 +30,7 @@ div {
     position: relative;
     margin: 0px auto;
 }
-
+*/
 .user_data {
     cursor: pointer;
     height: 40px;
@@ -39,7 +38,12 @@ div {
     border-radius: 50px;
     background: aqua;
 }
-
+.user_data:active{
+    opacity: 0.85;
+}
+.user_data:hover{
+    opacity: 0.7;
+}
 .add_contact {
     width: 150px;
     height: 50px;
@@ -59,7 +63,7 @@ div {
     line-height: 40px;
     text-overflow: ellipsis;
 }
-
+/*
 .user_exit {
     width: 100px;
     height: 50px;
@@ -79,7 +83,7 @@ div {
 .user_exit:active {
     opacity: 0.7;
 }
-
+*/
 /*-------------------------*/
 .user_and_phone {
     overflow-y: scroll;
@@ -146,7 +150,7 @@ textarea {
 }
 
 .phone {
-    height: 50px;
+    height: 52px;
     background: #C9FF8C;
     box-sizing: border-box;
     border: 2px solid black;
@@ -156,7 +160,8 @@ textarea {
 }
 
 .phone_name {
-    height: 100%;
+    width: calc(100% - 110px);
+    box-sizing: content-box;
     overflow-x: hidden;
     float: left;
 }
@@ -198,7 +203,6 @@ textarea {
 .hidden {
     display: none;
 }
-
 .event {
     width: 150px;
     height: 30px;
@@ -254,4 +258,22 @@ textarea {
 
 ::-webkit-resizer {
     background-color: #666;
+}
+.hidden-768{
+    display: none ;
+}
+@media (max-width: 768px) {
+    .block_back{
+        height: 54px;
+    }
+    .back{
+        float: right;
+    }
+    .back_img{
+        cursor: pointer;
+        height: 50px;
+    }
+    .hidden-768{
+        display: block ;
+    }
 }

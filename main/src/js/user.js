@@ -1,14 +1,25 @@
 var contact_json = {};//json данных о контактах
 var id_user;//id пользователя
 var data_user = {};
-
+var windowWidth;
 
 window.onload = function () {
     document.getElementById("content").classList.add("hidden");
     check_session();
+    windowWidth = document.documentElement.clientWidth;
     document.getElementById("add_contact").onclick = function () {
+        if(windowWidth<768){
+            document.getElementById("user_and_phone").classList.add("hidden");
+            document.getElementById("user_info").classList.remove("hidden");
+            console.log(windowWidth);
+        }
         document.getElementById("user_info").innerHTML = "" +
             "            <div class=\"user_add\" id=\"user_add\">\n" +
+            "                <div class='col-12 hidden-768 block_back'>" +
+            "                    <div class='back' onclick='back()'>" +
+            "                       <img class='back_img' src='main/src/img/back.png'/>" +
+            "                    </div>" +
+            "                </div>" +
             "                <table>\n" +
             "                    <tr>\n" +
             "                        <td>Номер телефона:</td>\n" +
@@ -77,13 +88,13 @@ var contact = function () {
                 phone +=
                     "<a href='" + contact_json[i]['vk'] + "' target='_blank'>" +
                     "<img class='vk_img' src='main/src/img/vk.png'></a>" +
-                    "<div class='phone_name col-7 text-center'>" + contact_json[i]['vk'];
+                    "<div class='phone_name text-center'>" + contact_json[i]['vk'];
             }
             else {
                 phone +=
                     "<a href='tel:" + contact_json[i]['phone'] + "'>" +
                     "<img src='main/src/img/telefon.png'></a>" +
-                    "<div class='phone_name col-7 text-center'>" + contact_json[i]['phone'];
+                    "<div class='phone_name text-center'>" + contact_json[i]['phone'];
             }
             phone +=
                 "<br>" + contact_json[i]['name'] + "</div>" +
@@ -96,8 +107,18 @@ var contact = function () {
 };
 var get_contact = function (id) {
     data_user = get_json_contact(id);
+    if(windowWidth<768){
+        document.getElementById("user_and_phone").classList.add("hidden");
+        document.getElementById("user_info").classList.remove("hidden");
+        console.log(windowWidth);
+    }
     document.getElementById("user_info").innerHTML = "" +
         "            <div class=\"user_add\" >\n" +
+        "                <div class='col-12 hidden-768 block_back'>" +
+        "                    <div class='back' onclick='back()'>" +
+        "                       <img class='back_img' src='main/src/img/back.png'/>" +
+        "                    </div>" +
+        "                </div>" +
         "                <table>\n" +
         "                    <tr>\n" +
         "                        <td>Номер телефона:</td>\n" +
@@ -212,7 +233,7 @@ var addComment = function (id) {
             load_comment(id);
         }
     });
-    document.getElementById("comment").value ="";
+    document.getElementById("comment").value = "";
 }
 var load_comment = function (id) {
     let commmnet_json = {};
@@ -258,4 +279,9 @@ const check_session = function () {
         }
     });
 }
-//load_comment(1);
+var back = function () {
+    document.getElementById("user_info").classList.remove("hidden");
+    document.getElementById("add_contact").classList.remove("hidden");
+    document.getElementById("user_and_phone").classList.remove("hidden");
+}
+

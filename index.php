@@ -7,9 +7,9 @@ session_start();
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="main/src/bootstrap/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="main/src/css/index.css">
 </head>
 <body>
