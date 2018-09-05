@@ -55,7 +55,8 @@ session_start();
         </div>
     </div>
 </div>
-<div class="settings_block text-center col-12 float-left">
+<div class="settings_block text-center col-12 float-left hidden">
+    <!-- убрать класс hidden  //-->
     <h4>Настройки отображения акаунтов</h4>
     <div class="settings_radio float-left col-12">
         <div class="col-12 float-left">
