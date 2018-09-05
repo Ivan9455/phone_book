@@ -8,5 +8,5 @@ print_r($session);
 $_SESSION['id'] = $session['id'];
 $_SESSION['email'] = $session['email'];
 $_SESSION['password'] = $session['password'];
-
+$_SESSION['settingsContactVisible'] = $session['settingsContactVisible'];
 

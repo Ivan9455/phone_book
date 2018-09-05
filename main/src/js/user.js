@@ -1,21 +1,21 @@
-var contact_json = {};//json данных о контактах
-var id_user;//id пользователя
-var data_user = {};
-var windowWidth;
+let contact_json = {};//json данных о контактах
+let id_user;//id пользователя
+let data_user = {};
+let windowWidth;
 
 window.onload = function () {
     document.getElementById("content").classList.add("hidden");
     check_session();
     windowWidth = document.documentElement.clientWidth;
     document.getElementById("add_contact").onclick = function () {
-        if(windowWidth<768){
+        if (windowWidth < 768) {
             document.getElementById("user_and_phone").classList.add("hidden");
             document.getElementById("user_info").classList.remove("hidden");
             console.log(windowWidth);
         }
         document.getElementById("user_info").innerHTML = "" +
             "            <div class=\"user_add\" id=\"user_add\">\n" +
-            "                <div class='col-12 hidden-768 block_back'>" +
+            "                <div class='col-12 hidden-768 block_back-768'>" +
             "                    <div class='back' onclick='back()'>" +
             "                       <img class='back_img' src='main/src/img/back.png'/>" +
             "                    </div>" +
@@ -71,7 +71,7 @@ window.onload = function () {
     };
 };
 
-var contact = function () {
+let contact = function () {
     $.ajax({
         type: "POST",
         data: {
@@ -80,7 +80,7 @@ var contact = function () {
         url: "main/src/ajax/contact_update.php",
     }).done(function (result) {
         contact_json = JSON.parse(result);
-        var phone = "";
+        let phone = "";
         for (let i = 0; i < contact_json.length; i++) {
             //console.log(res[i]['phone']);
             phone += "<div class='phone' >";
@@ -105,17 +105,19 @@ var contact = function () {
         document.getElementById("user_and_phone").innerHTML = phone;
     });
 };
-var get_contact = function (id) {
+let get_contact = function (id) {
     data_user = get_json_contact(id);
-    if(windowWidth<768){
+    if (windowWidth < 768) {
         document.getElementById("user_and_phone").classList.add("hidden");
         document.getElementById("user_info").classList.remove("hidden");
         console.log(windowWidth);
     }
     document.getElementById("user_info").innerHTML = "" +
         "            <div class=\"user_add\" >\n" +
-        "                <div class='col-12 hidden-768 block_back'>" +
-        "                    <div class='back' onclick='back()'>" +
+        "                <div class='col-12 block_back'>" +
+        "                    <div class='contact_del float-left col-4' onclick='contact_del(data_user.id)'>Удалить</div>" +
+        "                    <div class='contact_hidden float-left col-4' onclick='contact_hidden(data_user.id)'>Скрыть</div>" +
+        "                    <div class='back hidden-768' onclick='back()'>" +
         "                       <img class='back_img' src='main/src/img/back.png'/>" +
         "                    </div>" +
         "                </div>" +
@@ -166,14 +168,14 @@ var get_contact = function (id) {
         "            </div>";
     load_comment(data_user.id);
 };
-var get_json_contact = function (id) {
+let get_json_contact = function (id) {
     for (let i = 0; i < contact_json.length; i++) {
         if (contact_json[i]['id'] == id) {
             return contact_json[i];
         }
     }
 };
-var add_user = function () {
+let add_user = function () {
     let data = get_pole_contact();
     data.id_user = id_user;
     console.log(data);
@@ -189,8 +191,9 @@ var add_user = function () {
             contact();
         }
     });
+    back();
 };
-var contact_refresh_info = function (id) {
+let contact_refresh_info = function (id) {
     let data = get_pole_contact();
     data.id = id;
     console.log(data);
@@ -207,7 +210,7 @@ var contact_refresh_info = function (id) {
         }
     });
 };
-var get_pole_contact = function () {
+let get_pole_contact = function () {
     let data = {};
     data.phone = document.getElementById("phone").value;
     data.name = document.getElementById("name").value;
@@ -216,7 +219,7 @@ var get_pole_contact = function () {
     data.info = document.getElementById("info").value;
     return data;
 };
-var addComment = function (id) {
+let addComment = function (id) {
     let data = {};
     data.id = id;
     data.comment = document.getElementById("comment").value;
@@ -235,7 +238,7 @@ var addComment = function (id) {
     });
     document.getElementById("comment").value = "";
 }
-var load_comment = function (id) {
+let load_comment = function (id) {
     let commmnet_json = {};
     let comment_html = "";
     $.ajax({
@@ -253,7 +256,7 @@ var load_comment = function (id) {
         document.getElementById('comments').innerHTML = comment_html;
     });
 }
-var comment = function (json) {
+let comment = function (json) {
     return "" +
         "<div class='comment'>" +
         "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString() + "</div>" +
@@ -274,14 +277,48 @@ const check_session = function () {
         else {
             document.getElementById("content").classList.remove("hidden");
             id_user = result;
-            console.log(result)
+            console.log(result);
             contact();
         }
     });
 }
-var back = function () {
-    document.getElementById("user_info").classList.remove("hidden");
-    document.getElementById("add_contact").classList.remove("hidden");
-    document.getElementById("user_and_phone").classList.remove("hidden");
-}
+let back = function () {
+    try {
+        document.getElementById("user_info").classList.add("hidden");
+    } catch (e) {
+        console.log("Ошибка при скрытии блока user_info");
+    }
+    try {
+        document.getElementById("add_contact").classList.remove("hidden");
+    }
+    catch (e) {
+        console.log("Ошибка при скрытии блока add_contact");
+    }
+    try {
+        document.getElementById("user_and_phone").classList.remove("hidden");
+    }
+    catch (e) {
+        console.log("Ошибка при скрытии блока user_and_phone");
+    }
+};
+let contact_del = function (id) {
+    console.log("Скрыть контакт с id" + id);
 
+};
+let contact_hidden = function (id) {
+    console.log("Удалить контакт с id" + id);
+
+};
+
+let settings_update = function () {
+
+};
+let load_user_settings = function () {
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/check/user_settings.php",
+        data: {}
+    }).done(function (result) {
+
+    });
+};

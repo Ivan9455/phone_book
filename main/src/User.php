@@ -21,7 +21,7 @@ class User
         if ($result != null) {
             $session['id'] = $result['id'];
             $session['email'] = $user->email;
-            //$session['password'] = $user->password;
+            $session['settings_contact_visible'] = $result['settings_contact_visible'];
             return $session;
         } else {
             return 0;

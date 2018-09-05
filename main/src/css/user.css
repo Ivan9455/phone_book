@@ -6,11 +6,12 @@
 body{
     overflow-x: hidden;
     min-width: 360px;
-    background: linear-gradient(#A59BFF, #C9FF8C);
+    background: #AEC1C6;
+    /*background: linear-gradient(#A59BFF, #C9FF8C);*/
 }
 div {
     box-sizing: border-box;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .margin-10-0 {
@@ -87,7 +88,8 @@ div {
 /*-------------------------*/
 .user_and_phone {
     overflow-y: scroll;
-    height: calc(100vh - 150px);
+    min-height: 0;
+    max-height: calc(100vh - 150px);
 }
 
 .user_add {
@@ -263,7 +265,7 @@ textarea {
     display: none ;
 }
 @media (max-width: 768px) {
-    .block_back{
+    .block_back-768{
         height: 54px;
     }
     .back{
@@ -276,4 +278,35 @@ textarea {
     .hidden-768{
         display: block ;
     }
+}
+.block_back{
+    height: 60px;
+}
+.contact_del , .contact_hidden{
+    position: relative;
+    cursor: pointer;
+    height: 40px;
+    background: #00FFFF;
+    line-height: 40px;
+    top: 5px;
+    border-radius: 25px;
+    text-align: center;
+    margin: 0 10px;
+}
+.contact_del:hover , .contact_hidden:hover , .settings_img:hover{
+    opacity: 0.7;
+}
+.contact_del:active , .contact_hidden:active , .settings_img:active{
+    opacity: 0.85;
+}
+.settings_img {
+    height: 40px;
+    cursor: pointer;
+}
+.settings{
+    height: 40px;
+}
+.settings_radio{
+    min-width: 360px;
+    margin: 0 auto;
 }
