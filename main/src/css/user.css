@@ -252,6 +252,7 @@ textarea {
     .back_img{
         cursor: pointer;
         height: 50px;
+        padding: 5px 0;
     }
     .hidden-768{
         display: block ;
@@ -307,8 +308,8 @@ textarea {
 }
 .modal-close {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 15px;
+    right: 15px;
     width: 30px;
     height: 30px;
     cursor: pointer;
