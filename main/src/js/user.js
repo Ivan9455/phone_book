@@ -2,14 +2,19 @@ let contact_json = {};//json данных о контактах
 let user_data = {};//данных пользователя
 let data_user = {};//данные контактов пользователя
 let windowWidth;
-
-window.onload = function () {
+let loading_all_function = function () {
     document.getElementById("content").classList.add("hidden");
-    check_session();
     windowWidth = document.documentElement.clientWidth;
-    // console.log(user_data);
-    // load_user_settings();
-    // console.log(user_data);
+    check_session();
+    let interval = setInterval(function () {
+        if (user_data.id) {
+            load_user_settings();
+            clearInterval(interval);
+        }
+    },200);
+};
+window.onload = function () {
+    loading_all_function();
     document.getElementById("add_contact").onclick = function () {
         if (windowWidth < 768) {
             document.getElementById("user_and_phone").classList.add("hidden");
@@ -282,7 +287,6 @@ const check_session = function () {
         else {
             document.getElementById("content").classList.remove("hidden");
             user_data = JSON.parse(result);
-            load_user_settings();
             contact();
         }
     });
@@ -312,21 +316,18 @@ let settings_update = function () {
             };
             $.ajax({
                 type: "POST",
-                url: "main/src/ajax/check/update_setting.php",
+                url: "main/src/ajax/check/settings_update.php",
                 data: {json}
             }).done(function (result) {
-                document.getElementById(document.getElementsByName("options").item(i).id).checked = true;
-                user_data.settingsContactVisible = i;
+                session_update(i);
                 return;
             })
         }
     }
-    // //load_user_settings();
-    console.log(user_data.settingsContactVisible);
+    //console.log(user_data.settingsContactVisible);
     check_session();
 };
 let load_user_settings = function () {
-    console.log(user_data);
     switch (user_data.settingsContactVisible) {
         case "0":
             document.getElementById("option1").checked = true;
@@ -346,6 +347,15 @@ let settings_open = function () {
 let settings_close = function () {
     document.getElementById("settings_block").classList.add("hidden");
 };
-// let load_style = function () {
-//     windowHeight = document.documentElement.clientHeight;
-// }
+let session_update = function (setting_visible) {
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/check/session_update.php",
+        data: {settingsContactVisible: setting_visible}
+    }).done(function (result) {
+        //document.getElementById(document.getElementsByName("options").item(setting_visible).id).checked = true;
+        //user_data.settingsContactVisible = setting_visible;
+        //console.log(result)
+        settings_close();
+    })
+};
