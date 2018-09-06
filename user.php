@@ -42,12 +42,12 @@ session_start();
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-6 float-left">
+        <div class="col-lg-5 col-md-6 float-left">
             <div class="user_and_phone" id="user_and_phone">
 
             </div>
         </div>
-        <div class="col-lg-8 col-md-6 float-left">
+        <div class="col-lg-7 col-md-6 float-left block_in">
             <div class="user_info" id="user_info">
 
             </div>

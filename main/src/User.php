@@ -127,4 +127,13 @@ VALUES (
         `date` ='" . $json['date'] . "'";
         mysqli_query($this->db->isDb(), $sql);
     }
+
+    public function contact_visible($json)
+    {
+        $sql = "UPDATE `contact` SET 
+        `visible` = '" . $json['visible'] . "' 
+        WHERE `contact`.`id` = '" . $json['id'] . "'
+        ";
+        mysqli_query($this->db->isDb(), $sql);
+    }
 }

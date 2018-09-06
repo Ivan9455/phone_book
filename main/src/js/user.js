@@ -17,9 +17,10 @@ let loading_all_function = function () {
 window.onload = function () {
     loading_all_function();
     document.getElementById("add_contact").onclick = function () {
+        document.getElementById("user_info").classList.remove("hidden");
         if (windowWidth < 768) {
             document.getElementById("user_and_phone").classList.add("hidden");
-            document.getElementById("user_info").classList.remove("hidden");
+            //document.getElementById("user_info").classList.remove("hidden");
             console.log(windowWidth);
         }
         document.getElementById("user_info").innerHTML = "" +
@@ -125,11 +126,12 @@ let get_contact = function (id) {
         document.getElementById("user_info").classList.remove("hidden");
         console.log(windowWidth);
     }
+    let str = (data_user.visible == 1) ? "Скрыть" : "Открыть";
     document.getElementById("user_info").innerHTML = "" +
         "            <div class=\"user_add\" >\n" +
         "                <div class='col-12 block_back'>" +
-        "                    <div class='contact_del float-left col-4' onclick='contact_del(data_user.id)'>Удалить</div>" +
-        "                    <div class='contact_hidden float-left col-4' onclick='contact_hidden(data_user.id)'>Скрыть</div>" +
+        "                    <div class='contact_del float-left col-4' onclick='contact_del(" + JSON.stringify(data_user) + ")'>Удалить</div>" +
+        "                    <div class='contact_hidden float-left col-4' onclick='contact_visible_radio(" + JSON.stringify(data_user) + ")'>" + str + "</div>" +
         "                    <div class='back hidden-768' onclick='back()'>" +
         "                       <img class='back_img' src='main/src/img/back.png'/>" +
         "                    </div>" +
@@ -180,7 +182,7 @@ let get_contact = function (id) {
         "</div> " +
         "            </div>";
     load_comment(data_user.id);
-
+    document.getElementById("user_info").classList.remove("hidden");
 };
 let get_json_contact = function (id) {
     for (let i = 0; i < contact_json.length; i++) {
@@ -308,7 +310,7 @@ let comment_del = function (json) {
     $.ajax({
         type: "POST",
         url: "main/src/ajax/comment_delit.php",
-        data: {json:json}
+        data: {json: json}
     }).done(function (result) {
         console.log(json);
         load_comment(json.id_contact);
@@ -318,9 +320,19 @@ let contact_del = function (id) {
     console.log("Скрыть контакт с id" + id);
 
 };
-let contact_hidden = function (id) {
-    console.log("Удалить контакт с id" + id);
-
+let contact_visible_radio = function (json) {
+    console.log(json.visible);
+    json.visible = (json.visible == 0) ? 1 : 0;
+    console.log(json.visible);
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/contact_visible.php",
+        data: {json: json}
+    }).done(function (result) {
+        settings_update();
+        back()
+        //console.log(result);
+    })
 };
 
 let settings_update = function () {
