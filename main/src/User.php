@@ -118,4 +118,13 @@ VALUES (
         ";
         mysqli_query($this->db->isDb(), $sql);
     }
+
+    public function comment_delite($json)
+    {
+        $sql = "DELETE FROM `comment_contact` WHERE 
+        `id_contact` ='" . $json['id_contact'] . "' AND 
+        `comment` ='" . $json['comment'] . "' AND
+        `date` ='" . $json['date'] . "'";
+        mysqli_query($this->db->isDb(), $sql);
+    }
 }

@@ -11,7 +11,8 @@ let loading_all_function = function () {
             load_user_settings();
             clearInterval(interval);
         }
-    },200);
+    }, 200);
+
 };
 window.onload = function () {
     loading_all_function();
@@ -89,10 +90,11 @@ let contact = function () {
         url: "main/src/ajax/contact_update.php",
     }).done(function (result) {
         contact_json = JSON.parse(result);
+        console.log(contact_json);
         let phone = "";
         for (let i = 0; i < contact_json.length; i++) {
             //console.log(res[i]['phone']);
-            phone += "<div class='phone' >";
+            phone += "<div class='phone v" + contact_json[i]['visible'] + "' >";
             if (contact_json[i]['phone'] == "") {
                 phone +=
                     "<a href='" + contact_json[i]['vk'] + "' target='_blank'>" +
@@ -112,10 +114,12 @@ let contact = function () {
         }
         //console.log(result[0]);
         document.getElementById("user_and_phone").innerHTML = phone;
+        contact_style_setting();
     });
 };
 let get_contact = function (id) {
     data_user = get_json_contact(id);
+    console.log(data_user);
     if (windowWidth < 768) {
         document.getElementById("user_and_phone").classList.add("hidden");
         document.getElementById("user_info").classList.remove("hidden");
@@ -247,7 +251,7 @@ let addComment = function (id) {
         }
     });
     document.getElementById("comment").value = "";
-}
+};
 let load_comment = function (id) {
     let commmnet_json = {};
     let comment_html = "";
@@ -265,11 +269,16 @@ let load_comment = function (id) {
         }
         document.getElementById('comments').innerHTML = comment_html;
     });
-}
+};
 let comment = function (json) {
+    console.log(json);
     return "" +
         "<div class='comment'>" +
-        "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString() + "</div>" +
+        "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString() +
+        "<div class='comment_del float-right' onclick='comment_del(" + JSON.stringify(json) + ")'>" +
+        "<img class='comment_del_img float-right' src='main/src/img/del_comment.png'> " +
+        "</div>" +
+        "</div>" +
         "<div class='comment_text'>" + json.comment + "</div>" +
         "</div>"
 };
@@ -280,7 +289,6 @@ const check_session = function () {
         url: "main/src/ajax/check/session.php",
         data: {}
     }).done(function (result) {
-        console.log(result);
         if (!JSON.parse(result).id) {
             location.href = "index.php";
         }
@@ -295,6 +303,16 @@ let back = function () {
     document.getElementById("user_info").classList.add("hidden");
     document.getElementById("add_contact").classList.remove("hidden");
     document.getElementById("user_and_phone").classList.remove("hidden");
+};
+let comment_del = function (json) {
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/comment_delit.php",
+        data: {json:json}
+    }).done(function (result) {
+        console.log(json);
+        load_comment(json.id_contact);
+    });
 };
 let contact_del = function (id) {
     console.log("Скрыть контакт с id" + id);
@@ -320,12 +338,13 @@ let settings_update = function () {
                 data: {json}
             }).done(function (result) {
                 session_update(i);
+                contact_style_setting();
                 return;
             })
         }
     }
     //console.log(user_data.settingsContactVisible);
-    check_session();
+    //check_session();
 };
 let load_user_settings = function () {
     switch (user_data.settingsContactVisible) {
@@ -353,9 +372,42 @@ let session_update = function (setting_visible) {
         url: "main/src/ajax/check/session_update.php",
         data: {settingsContactVisible: setting_visible}
     }).done(function (result) {
-        //document.getElementById(document.getElementsByName("options").item(setting_visible).id).checked = true;
-        //user_data.settingsContactVisible = setting_visible;
-        //console.log(result)
+        check_session();
+
         settings_close();
-    })
+    });
+};
+let contact_style_setting = function () {
+    if (user_data.id) {
+        let v0 = document.getElementsByClassName('v0');
+        let v1 = document.getElementsByClassName('v1');
+        for (let i = 0; i < v0.length; i++) {
+            v0.item(i).style.background = '#FFB496';
+        }
+        switch (user_data.settingsContactVisible) {
+            case "0":
+                style_phone_hidden(v0);
+                style_phone_visible(v1);
+                break;
+            case "1":
+                style_phone_hidden(v1);
+                style_phone_visible(v0);
+                break;
+            case "2":
+                style_phone_visible(v0);
+                style_phone_visible(v1);
+                break;
+        }
+
+    }
+};
+const style_phone_visible = function (v) {
+    for (let i = 0; i < v.length; i++) {
+        v.item(i).style.display = 'block';
+    }
+};
+const style_phone_hidden = function (v) {
+    for (let i = 0; i < v.length; i++) {
+        v.item(i).style.display = 'none';
+    }
 };

@@ -333,3 +333,10 @@ textarea {
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+.comment_del_img{
+    width: 20px;
+    position: relative;
+    cursor: pointer;
+    top: 5px;
+    right: 5px;
+}

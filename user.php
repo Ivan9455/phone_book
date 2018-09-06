@@ -1,17 +1,5 @@
 <?php
 session_start();
-//require_once ("main/src/db/DataBase.php");
-//$db = new DataBase();
-//$sql = "SELECT * FROM `contact` WHERE `id_user`='4';";
-//$res = mysqli_query($db->isDb(), $sql);
-//print_r(json_encode($res));
-//print_r($_SESSION['id']);
-//require_once ("main/src/db/DataBase.php");
-//$db = new DataBase();
-//$sql = "SELECT `id`,`mail`,`settingsContactVisible` FROM `user` WHERE `mail`='paderin94126@gmail.com' AND `password`='11111111';";
-//$result = mysqli_fetch_assoc(mysqli_query($db->isDb(), $sql));
-//print_r(json_encode($result));
-////print_r(json_decode($result));
 ?>
 <!DOCTYPE html>
 <html lang="ru">
