@@ -239,6 +239,9 @@ textarea {
 .hidden-768{
     display: none ;
 }
+.block_in{
+    padding: 0 40px 0 0;
+}
 @media (max-width: 768px) {
     .block_back-768{
         height: 54px;
@@ -252,6 +255,9 @@ textarea {
     }
     .hidden-768{
         display: block ;
+    }
+    .block_in{
+        padding: 0 50px ;
     }
 }
 .block_back{
@@ -339,7 +345,4 @@ textarea {
     cursor: pointer;
     top: 5px;
     right: 5px;
-}
-.block_in{
-    padding: 0 40px 0 0;
 }
