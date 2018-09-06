@@ -316,9 +316,16 @@ let comment_del = function (json) {
         load_comment(json.id_contact);
     });
 };
-let contact_del = function (id) {
-    console.log("Скрыть контакт с id" + id);
-
+let contact_del = function (json) {
+    console.log(json);
+    $.ajax({
+        type: "POST",
+        url: "main/src/ajax/contact_delite.php",
+        data: {json: json}
+    }).done(function (result) {
+        back();
+        check_session();
+    })
 };
 let contact_visible_radio = function (json) {
     console.log(json.visible);
@@ -385,7 +392,6 @@ let session_update = function (setting_visible) {
         data: {settingsContactVisible: setting_visible}
     }).done(function (result) {
         check_session();
-
         settings_close();
     });
 };
