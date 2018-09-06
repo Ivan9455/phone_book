@@ -1,6 +1,17 @@
 <?php
 session_start();
-//print_r($_SESSION['settings_contact_visible']);
+//require_once ("main/src/db/DataBase.php");
+//$db = new DataBase();
+//$sql = "SELECT * FROM `contact` WHERE `id_user`='4';";
+//$res = mysqli_query($db->isDb(), $sql);
+//print_r(json_encode($res));
+//print_r($_SESSION['id']);
+//require_once ("main/src/db/DataBase.php");
+//$db = new DataBase();
+//$sql = "SELECT `id`,`mail`,`settingsContactVisible` FROM `user` WHERE `mail`='paderin94126@gmail.com' AND `password`='11111111';";
+//$result = mysqli_fetch_assoc(mysqli_query($db->isDb(), $sql));
+//print_r(json_encode($result));
+////print_r(json_decode($result));
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -34,11 +45,11 @@ session_start();
             </div>
         </div>
         <div class="col-lg-12 col-md-12 float-left text-center margin-5-0">
-            <div class="settings float-left col-2 col-md-2 col-lg-1">
+            <div class="settings float-left col-2 col-md-2 col-lg-1" onclick="settings_open()">
                 <img class="settings_img" src="main/src/img/settings.png">
             </div>
             <div class="user_email col-10 col-md-10 col-lg-11">
-                <?php echo $_SESSION['email']; ?>
+                <?php echo $_SESSION['mail']; ?>
             </div>
         </div>
     </div>
@@ -55,31 +66,34 @@ session_start();
         </div>
     </div>
 </div>
-<div class="settings_block text-center col-12 float-left hidden">
+<div class="settings_block text-center col-12 float-left hidden" id="settings_block">
     <!-- убрать класс hidden  //-->
-    <h4>Настройки отображения акаунтов</h4>
+    <div class="modal-close" onclick="settings_close()">
+
+    </div>
     <div class="settings_radio float-left col-12">
+        <h4>Настройки отображения акаунтов</h4>
         <div class="col-12 float-left">
             <label>
-                <input type="radio" name="options" id="option1">
+                <input type="radio" name="options" id="option1" value="0">
                 Отображать только открытые контакты<br>
                 <span>(По умолчанию)</span>
             </label>
         </div>
         <div class="col-12 float-left">
             <label>
-                <input type="radio" name="options" id="option2">
+                <input type="radio" name="options" id="option2" value="1">
                 Отображать только скрытые контакты
             </label>
         </div>
         <div class="col-12 float-left">
             <label class="">
-                <input type="radio" name="options" id="option3">
+                <input type="radio" name="options" id="option3" value="2">
                 Отображать все контакты
             </label>
         </div>
         <div class="col-12 float-left">
-            <div class="settings_save" onclick="settings_update()">Сохранить</div>
+            <div class="settings_save user_data" onclick="settings_update()">Сохранить</div>
         </div>
     </div>
 </div>

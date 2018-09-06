@@ -4,9 +4,9 @@ require_once ("../../User.php");
 $json = json_decode($_POST['json']);
 $user = new User();
 $session = $user->login($json);
-print_r($session);
-$_SESSION['id'] = $session['id'];
-$_SESSION['email'] = $session['email'];
-$_SESSION['password'] = $session['password'];
-$_SESSION['settingsContactVisible'] = $session['settingsContactVisible'];
+print_r(json_encode($session));
+$_SESSION = $session;
+//$_SESSION['email'] = $session->mail;
+//$_SESSION['password'] = $session->settingsContactVisible;
+
 

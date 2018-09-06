@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['id']) {
-    echo $_SESSION['id'];
+    print_r(json_encode($_SESSION));
 } else {
     echo false;
 }

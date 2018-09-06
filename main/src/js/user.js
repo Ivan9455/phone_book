@@ -1,12 +1,15 @@
 let contact_json = {};//json данных о контактах
-let id_user;//id пользователя
-let data_user = {};
+let user_data = {};//данных пользователя
+let data_user = {};//данные контактов пользователя
 let windowWidth;
 
 window.onload = function () {
     document.getElementById("content").classList.add("hidden");
     check_session();
     windowWidth = document.documentElement.clientWidth;
+    // console.log(user_data);
+    // load_user_settings();
+    // console.log(user_data);
     document.getElementById("add_contact").onclick = function () {
         if (windowWidth < 768) {
             document.getElementById("user_and_phone").classList.add("hidden");
@@ -69,13 +72,14 @@ window.onload = function () {
             location.href = "index.php";
         });
     };
+
 };
 
 let contact = function () {
     $.ajax({
         type: "POST",
         data: {
-            id: id_user
+            id: user_data.id
         },
         url: "main/src/ajax/contact_update.php",
     }).done(function (result) {
@@ -167,6 +171,7 @@ let get_contact = function (id) {
         "</div> " +
         "            </div>";
     load_comment(data_user.id);
+
 };
 let get_json_contact = function (id) {
     for (let i = 0; i < contact_json.length; i++) {
@@ -177,7 +182,7 @@ let get_json_contact = function (id) {
 };
 let add_user = function () {
     let data = get_pole_contact();
-    data.id_user = id_user;
+    data.id_user = user_data.id;
     console.log(data);
     $.ajax({
         type: "POST",
@@ -262,7 +267,7 @@ let comment = function (json) {
         "<div class='comment_time'>" + new Date(Number.parseInt(json.date)).toLocaleString() + "</div>" +
         "<div class='comment_text'>" + json.comment + "</div>" +
         "</div>"
-}
+};
 //повторяющийся код покачто не знаю как вынести в отдельный файл
 const check_session = function () {
     $.ajax({
@@ -271,35 +276,21 @@ const check_session = function () {
         data: {}
     }).done(function (result) {
         console.log(result);
-        if (!result) {
+        if (!JSON.parse(result).id) {
             location.href = "index.php";
         }
         else {
             document.getElementById("content").classList.remove("hidden");
-            id_user = result;
-            console.log(result);
+            user_data = JSON.parse(result);
+            load_user_settings();
             contact();
         }
     });
-}
+};
 let back = function () {
-    try {
-        document.getElementById("user_info").classList.add("hidden");
-    } catch (e) {
-        console.log("Ошибка при скрытии блока user_info");
-    }
-    try {
-        document.getElementById("add_contact").classList.remove("hidden");
-    }
-    catch (e) {
-        console.log("Ошибка при скрытии блока add_contact");
-    }
-    try {
-        document.getElementById("user_and_phone").classList.remove("hidden");
-    }
-    catch (e) {
-        console.log("Ошибка при скрытии блока user_and_phone");
-    }
+    document.getElementById("user_info").classList.add("hidden");
+    document.getElementById("add_contact").classList.remove("hidden");
+    document.getElementById("user_and_phone").classList.remove("hidden");
 };
 let contact_del = function (id) {
     console.log("Скрыть контакт с id" + id);
@@ -311,14 +302,50 @@ let contact_hidden = function (id) {
 };
 
 let settings_update = function () {
-
+    let options = document.getElementsByName("options");
+    console.log(document.getElementsByName("options"));
+    for (let i = 0; i < options.length; i++) {
+        if (document.getElementsByName("options").item(i).checked) {
+            let json = {
+                id: user_data.id,
+                settingsContactVisible: i
+            };
+            $.ajax({
+                type: "POST",
+                url: "main/src/ajax/check/update_setting.php",
+                data: {json}
+            }).done(function (result) {
+                document.getElementById(document.getElementsByName("options").item(i).id).checked = true;
+                user_data.settingsContactVisible = i;
+                return;
+            })
+        }
+    }
+    // //load_user_settings();
+    console.log(user_data.settingsContactVisible);
+    check_session();
 };
 let load_user_settings = function () {
-    $.ajax({
-        type: "POST",
-        url: "main/src/ajax/check/user_settings.php",
-        data: {}
-    }).done(function (result) {
-
-    });
+    console.log(user_data);
+    switch (user_data.settingsContactVisible) {
+        case "0":
+            document.getElementById("option1").checked = true;
+            break;
+        case "1":
+            document.getElementById("option2").checked = true;
+            break;
+        case "2":
+            document.getElementById("option3").checked = true;
+            break;
+    }
 };
+let settings_open = function () {
+    document.getElementById("settings_block").classList.remove("hidden");
+    document.getElementById("settings_block").style.height = document.getElementById("content").offsetHeight + 20 + 'px';
+};
+let settings_close = function () {
+    document.getElementById("settings_block").classList.add("hidden");
+};
+// let load_style = function () {
+//     windowHeight = document.documentElement.clientHeight;
+// }

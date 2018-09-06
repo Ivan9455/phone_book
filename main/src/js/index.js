@@ -27,10 +27,10 @@ window.onload = function () {
         let password = document.getElementById("password_login");
         data.email = email.value;
         data.password = password.value;
-        if(email.value===""){
+        if (email.value === "") {
             email.style.border = "2px solid red";
         }
-        if(password.value===""){
+        if (password.value === "") {
             password.style.border = "2px solid red";
         }
         console.log(data);
@@ -41,8 +41,8 @@ window.onload = function () {
                 json: JSON.stringify(data)
             }
         }).done(function (result) {
-            console.log(result);
-            if(result){
+            console.log(JSON.parse(result));
+            if (JSON.parse(result).id) {
                 check_session();
             }
 
@@ -86,7 +86,7 @@ window.onload = function () {
             }
         }).done(function (result) {
             console.log(result);
-            if(result){
+            if (result) {
                 alert("Новый пароль был отправлен вам на почту!")
             }
         });
@@ -99,8 +99,8 @@ const check_session = function () {
         url: "main/src/ajax/check/session.php",
         data: {}
     }).done(function (result) {
-        console.log(result);
-        if (result) {
+        console.log(JSON.parse(result));
+        if (JSON.parse(result).id) {
             location.href = "user.php";
         }
     });

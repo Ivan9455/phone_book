@@ -16,13 +16,10 @@ class User
 
     public function login($user)
     {
-        $sql = "SELECT `id` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . $user->password . "';";
+        $sql = "SELECT `id`,`mail`,`settingsContactVisible` FROM `user` WHERE `mail`='" . $user->email . "' AND `password`='" . $user->password . "';";
         $result = mysqli_fetch_assoc(mysqli_query($this->db->isDb(), $sql));
         if ($result != null) {
-            $session['id'] = $result['id'];
-            $session['email'] = $user->email;
-            $session['settings_contact_visible'] = $result['settings_contact_visible'];
-            return $session;
+            return $result;
         } else {
             return 0;
         }
@@ -67,7 +64,7 @@ NULL,
 
     public function contact_update($id)
     {
-        $sql = "SELECT * FROM `contact` WHERE `id_user`='".$id."';";
+        $sql = "SELECT * FROM `contact` WHERE `id_user`='" . $id . "';";
         $res = mysqli_query($this->db->isDb(), $sql);
         $arr = [];
         while ($result = mysqli_fetch_assoc($res)) {
@@ -110,5 +107,15 @@ VALUES (
             array_push($arr, $result);
         }
         return json_encode($arr);
+    }
+
+    public function settings_update($setting)
+    {
+        $sql = "
+        UPDATE `user` SET 
+        `settingsContactVisible` = '" . $setting['settingsContactVisible'] . "'
+        WHERE `user`.`id` = '" . $setting['id'] . "'
+        ";
+        mysqli_query($this->db->isDb(), $sql);
     }
 }

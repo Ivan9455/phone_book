@@ -64,44 +64,19 @@ div {
     line-height: 40px;
     text-overflow: ellipsis;
 }
-/*
-.user_exit {
-    width: 100px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    float: right;
-    margin: 25px 30px 0px 0px;
-    cursor: pointer;
-    background: cadetblue;
-    border-radius: 25px;
-}
 
-.user_exit:hover {
-    opacity: 0.8;
-}
-
-.user_exit:active {
-    opacity: 0.7;
-}
-*/
 /*-------------------------*/
 .user_and_phone {
     overflow-y: scroll;
     min-height: 0;
     max-height: calc(100vh - 150px);
+    padding: 0 30px;
 }
 
 .user_add {
-    /*position: absolute;*/
-    /*left: 265px;*/
-    /*top: 110px;*/
-    /*width: 300px;*/
     padding: 15px;
-    /*float: left;*/
     background: #B9FFF6;
     border-radius: 30px;
-    /*z-index: 1000;*/
 }
 
 .user_info input {
@@ -299,6 +274,14 @@ textarea {
 .contact_del:active , .contact_hidden:active , .settings_img:active{
     opacity: 0.85;
 }
+.settings_block{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: #2885FF;
+    top: 0;
+    left: 0;
+}
 .settings_img {
     height: 40px;
     cursor: pointer;
@@ -307,6 +290,46 @@ textarea {
     height: 40px;
 }
 .settings_radio{
+    position: relative;
     min-width: 360px;
     margin: 0 auto;
+    top: 30%;
+}
+.settings_save{
+    width: 300px;
+    margin: 0 auto;
+}
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.modal-close:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.modal-close::before,
+.modal-close::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 1px;
+    width: 30px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+.modal-close::before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.modal-close::after {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
