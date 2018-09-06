@@ -358,6 +358,7 @@ let settings_update = function () {
             }).done(function (result) {
                 session_update(i);
                 contact_style_setting();
+                document.getElementById("user_info").classList.add("hidden");
                 return;
             })
         }
@@ -380,7 +381,7 @@ let load_user_settings = function () {
 };
 let settings_open = function () {
     document.getElementById("settings_block").classList.remove("hidden");
-    document.getElementById("settings_block").style.height = document.getElementById("content").offsetHeight + 20 + 'px';
+    document.getElementById("settings_block").style.height = document.documentElement.clientHeight + 20 + 'px';
 };
 let settings_close = function () {
     document.getElementById("settings_block").classList.add("hidden");
