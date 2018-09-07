@@ -175,6 +175,7 @@ textarea {
     background: #FEFFBE;
     border: 5px solid #B9E6FF;
     border-radius: 30px;
+    margin: 5px 0;
 }
 
 .hidden {
@@ -259,6 +260,11 @@ textarea {
     }
     .block_in{
         padding: 0 50px ;
+    }
+}
+@media (max-width: 575px) {
+    .block_in{
+        padding: 0 ;
     }
 }
 .block_back{
