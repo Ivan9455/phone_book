@@ -80,7 +80,7 @@ window.onload = function () {
         $.ajax({
             type: "POST",
             url: "main/src/ajax/check/session_exit.php",
-        }).done(function (result) {
+        }).done(function () {
             location.href = "index.php";
         });
     };
