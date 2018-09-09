@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="main/src/css/user.css">
+    <link rel="stylesheet" href="main/src/css/calendar.css">
 </head>
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -85,6 +86,6 @@ session_start();
         </div>
     </div>
 </div>
-</div>
+<script type="text/javascript" src="main/src/js/calendar_events.js" ></script>
 </body>
 </html>

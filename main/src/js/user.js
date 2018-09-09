@@ -2,18 +2,23 @@ let contact_json = {};//json данных о контактах
 let user_data = {};//данных пользователя
 let data_user = {};//данные контактов пользователя
 let windowWidth;
+
+
 let loading_all_function = function () {
     document.getElementById("content").classList.add("hidden");
     windowWidth = document.documentElement.clientWidth;
     check_session();
     let interval = setInterval(function () {
-        if (user_data.id) {
+        if (user_data.id&&contact_json.length!=null) {
             load_user_settings();
+            //load_events();
             clearInterval(interval);
         }
     }, 200);
 
+
 };
+
 window.onload = function () {
     loading_all_function();
     document.getElementById("add_contact").onclick = function () {
@@ -118,6 +123,7 @@ let contact = function () {
         contact_style_setting();
     });
 };
+
 let get_contact = function (id) {
     data_user = get_json_contact(id);
     console.log(data_user);
@@ -430,3 +436,5 @@ const style_phone_hidden = function (v) {
         v.item(i).style.display = 'none';
     }
 };
+
+
