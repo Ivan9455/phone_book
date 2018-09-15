@@ -397,7 +397,7 @@ let session_update = function (setting_visible) {
         type: "POST",
         url: "main/src/ajax/check/session_update.php",
         data: {settingsContactVisible: setting_visible}
-    }).done(function (result) {
+    }).done(function () {
         check_session();
         settings_close();
     });
